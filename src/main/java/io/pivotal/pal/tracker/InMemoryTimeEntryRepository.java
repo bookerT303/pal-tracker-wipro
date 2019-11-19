@@ -3,6 +3,7 @@ package io.pivotal.pal.tracker;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InMemoryTimeEntryRepository implements TimeEntryRepository {
     private HashMap<Long, TimeEntry> timeEntries = new HashMap<>();
@@ -32,7 +33,7 @@ public class InMemoryTimeEntryRepository implements TimeEntryRepository {
 
     @Override
     public List<TimeEntry> list() {
-        return new ArrayList<>(timeEntries.values());
+        return timeEntries.values().stream().collect(Collectors.toList());
     }
 
     @Override
